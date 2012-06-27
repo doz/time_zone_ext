@@ -31,6 +31,7 @@ Time.zone.strptime("2012-06-02 00:00 UTC", "%Y-%m-%d %H:%M %Z")
 
 If you parse string without explicitly specified timezone, it will be treated as defined in current timezone.
 ```ruby
+Time.zone = 'EST'
 Time.zone.strptime("2012-06-02 00:00", "%Y-%m-%d %H:%M")
 # => Sat, 02 Jun 2012 00:00:00 EST -05:00
 ```
