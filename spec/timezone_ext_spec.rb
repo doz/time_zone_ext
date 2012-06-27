@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe TimezoneExt do
+describe TimeZoneExt do
   before(:each) do
     Time.zone = 'EST'
   end

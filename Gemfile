@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in timezone_ext.gemspec
+# Specify your gem's dependencies in time_zone_ext.gemspec
 gemspec

@@ -1,4 +1,4 @@
-# TimezoneExt
+# TimeZoneExt
 
 `ActiveSupport::TimeZone` class defines almost every method you need to handle time.
 Thus providing you with convenient means (`Time.zone.now`, `Time.zone.parse(str)`, etc.) to get time in current time zone.
@@ -10,7 +10,7 @@ But ActiveSupport doesn't define `strptime` method. Let's add this method that w
 
 Add this line to your application's Gemfile:
 
-    gem 'timezone_ext'
+    gem 'time_zone_ext'
 
 And then execute:
 
@@ -18,7 +18,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install timezone_ext
+    $ gem install time_zone_ext
 
 ## Usage
 

@@ -1,8 +1,8 @@
 require 'tzinfo'
 require "active_support/core_ext"
-require "timezone_ext/version"
+require "time_zone_ext/version"
 
-module TimezoneExt
+module TimeZoneExt
   def strptime(date, format)
     if format =~ /%z/i
       Time.strptime(date, format).in_time_zone
@@ -12,4 +12,4 @@ module TimezoneExt
   end
 end
 
-ActiveSupport::TimeZone.send :include, TimezoneExt
+ActiveSupport::TimeZone.send :include, TimeZoneExt
