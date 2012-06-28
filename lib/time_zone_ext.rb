@@ -4,7 +4,6 @@ require "time_zone_ext/version"
 
 module TimeZoneExt
   def strptime(date, format)
-    #TODO: rewrite using lower level functions
     if format =~ /%z/i
       Time.strptime(date, format).in_time_zone
     else
