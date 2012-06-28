@@ -1,4 +1,4 @@
-# TimeZoneExt
+# TimeZoneExt [![Build Status](https://secure.travis-ci.org/doz/time_zone_ext.png?branch=master)](http://travis-ci.org/doz/time_zone_ext)
 
 `ActiveSupport::TimeZone` class defines almost every method you need to handle time.
 Thus providing you with convenient means (`Time.zone.now`, `Time.zone.parse(str)`, etc.) to get time in current time zone.
