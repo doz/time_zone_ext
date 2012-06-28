@@ -15,6 +15,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = TimeZoneExt::VERSION
 
+  gem.add_development_dependency "rake"
   gem.add_development_dependency "rspec"
   gem.add_dependency "activesupport"
   gem.add_dependency "tzinfo"
