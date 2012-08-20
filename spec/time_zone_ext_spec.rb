@@ -16,4 +16,9 @@ describe TimeZoneExt do
   it "parses time without explicitly specified timezone" do
     Time.zone.strptime("2012-06-02 00:00", "%Y-%m-%d %H:%M").to_s.should == "2012-06-02 00:00:00 -0500"
   end
+
+  it "parses time with named time zone" do
+    Time.zone = "Moscow"
+    Time.zone.strptime("2012-06-02 00:00", "%Y-%m-%d %H:%M").to_s.should == "2012-06-02 00:00:00 +0400"
+  end
 end
