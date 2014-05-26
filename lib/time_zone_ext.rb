@@ -7,7 +7,7 @@ module TimeZoneExt
     if format =~ /%z/i
       DateTime.strptime(date, format).in_time_zone
     else
-      DateTime.strptime("#{date} zone#{formatted_offset}", "#{format} zone%z").in_time_zone
+      DateTime.strptime("#{date} zone#{now.formatted_offset}", "#{format} zone%z").in_time_zone
     end
   end
 end
