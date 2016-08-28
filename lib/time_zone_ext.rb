@@ -7,7 +7,7 @@ module TimeZoneExt
     if format =~ /%z/i
       DateTime.strptime(date, format).in_time_zone
     else
-      parsed_time = Time.strptime(date_time_string, format)
+      parsed_time = Time.strptime(date, format)
       ActiveSupport::TimeWithZone.new(nil, Time.zone, parsed_time)
     end
   end
