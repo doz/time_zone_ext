@@ -32,7 +32,7 @@ describe TimeZoneExt do
       let(:non_dst_time_string) { '2012-12-02 00:00' }
       it 'parses time in Time.zone without daylight saving time' do
         non_dst_time = Time.zone.strptime(non_dst_time_string, "%Y-%m-%d %H:%M")
-        expect(non_dst_time.to_s).to eq("2012-06-02 00:00:00 -0500")
+        expect(non_dst_time.to_s).to eq("2012-12-02 00:00:00 -0500")
       end
     end
   end
