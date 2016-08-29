@@ -15,6 +15,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = TimeZoneExt::VERSION
 
+  # Rake 11 require RUBY_VERSION >= 1.9.3
   if RUBY_VERSION < '1.9.3'
     gem.add_development_dependency 'rake', '< 11'
   else
@@ -24,8 +25,12 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "rspec"
 
   # HACK: Rails 5 dropped support for Ruby < 2.2.2
+  # Rails 4.2 dropped support for Ruby < 1.9.3
+  # (dependency i18n 0.7.0 require RUBY_VERSION >= 1.9.3)
   if RUBY_VERSION < '2.2.2'
     gem.add_dependency 'activesupport', '< 5'
+  elsif RUBY_VERSION < '1.9.3'
+    gem.add_dependency 'activesupport', '< 4.2'
   else
     gem.add_dependency 'activesupport'
   end
