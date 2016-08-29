@@ -20,9 +20,9 @@ Gem::Specification.new do |gem|
 
   # HACK: Rails 5 dropped support for Ruby < 2.2.2
   if RUBY_VERSION < '2.2.2'
-    spec.add_dependency 'activesupport', '< 5'
+    gem.add_dependency 'activesupport', '< 5'
   else
-    spec.add_dependency 'activesupport'
+    gem.add_dependency 'activesupport'
   end
 
   gem.add_dependency "tzinfo"
