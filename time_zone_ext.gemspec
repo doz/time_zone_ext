@@ -17,8 +17,13 @@ Gem::Specification.new do |gem|
 
   gem.add_development_dependency "rake"
   gem.add_development_dependency "rspec"
+
   # HACK: Rails 5 dropped support for Ruby < 2.2.2
-  active_support_version = "< 5" if Gem::Version.new(RUBY_VERSION) <= Gem::Version.new("2.2.2")
-  gem.add_dependency "activesupport"
+  if RUBY_VERSION < '2.2.2'
+    spec.add_dependency 'activesupport', '< 5'
+  else
+    spec.add_dependency 'activesupport'
+  end
+
   gem.add_dependency "tzinfo"
 end
