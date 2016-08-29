@@ -23,7 +23,7 @@ Gem::Specification.new do |gem|
   if RUBY_VERSION < '1.9.3'
     gem.add_development_dependency 'rake', '< 11'
     gem.add_development_dependency 'i18n', '< 0.7'
-    gem.add_dependency 'activesupport', '< 4.0.5'
+    gem.add_dependency 'activesupport', '< 4'
   elsif RUBY_VERSION < '2.2.2'
     gem.add_development_dependency 'rake'
     gem.add_dependency 'activesupport', '< 5'
