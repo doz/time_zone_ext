@@ -17,9 +17,10 @@ Gem::Specification.new do |gem|
 
   gem.add_development_dependency "rspec"
 
-  # HACK: Rails 5 dropped support for Ruby < 2.2.2
-  # Rails 4.2 dropped support for Ruby < 1.9.3
-  # (dependency i18n 0.7.0 require RUBY_VERSION >= 1.9.3)
+  # Rails 5 dropped support for Ruby < 2.2.2
+  # Rails 4 dropped support for Ruby < 1.9.3
+  # dependency i18n 0.7 require RUBY_VERSION >= 1.9.3
+  # rake 11 require RUBY_VERSION >= 1.9.3
   if RUBY_VERSION < '1.9.3'
     gem.add_development_dependency 'rake', '< 11'
     gem.add_development_dependency 'i18n', '< 0.7'
