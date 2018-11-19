@@ -23,7 +23,6 @@ module TimeZoneExt
   # https://github.com/karnov/i18n-date
   def unlocalize_date_string(string, locale = nil)
       locale ||= I18n.config.locale
-      I18n.config.default_locale= locale
       I18n.enforce_available_locales!(locale)
       CONVERTIONS.reduce(string) do |s, (type, replacements)|
         map = I18n.t(type, scope: "date", locale: locale).zip(replacements).to_h.tap { |h| h.delete(nil) }
