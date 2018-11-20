@@ -1,20 +1,41 @@
 require 'tzinfo'
 require "active_support/core_ext"
 require "time_zone_ext/version"
+require "date"
+require "i18n"
 
 module TimeZoneExt
-  def strptime(date, format)
+  def strptime(date, format, locale: I18n.config.locale)
     if format =~ /%z/i
-      DateTime.strptime(date, format).in_time_zone
+      DateTime.strptime(unlocalize_date_string(date,locale), format).in_time_zone
     else
-      time_in_zone = DateTime.strptime("#{date} zone#{formatted_offset}", "#{format} zone%z").in_time_zone
+      time_in_zone = DateTime.strptime(unlocalize_date_string("#{date} zone#{formatted_offset}",locale), "#{format} zone%z").in_time_zone
       if time_in_zone.formatted_offset != formatted_offset
-        DateTime.strptime("#{date} zone#{time_in_zone.formatted_offset}", "#{format} zone%z").in_time_zone
+        DateTime.strptime(unlocalize_date_string("#{date} zone#{time_in_zone.formatted_offset}",locale), "#{format} zone%z").in_time_zone
       else
         time_in_zone
       end
     end
   end
+
+  # This method converts preffered language month names to
+  # English month names based on the locale passed .
+  # https://github.com/karnov/i18n-date
+  def unlocalize_date_string(string, locale = nil)
+      locale ||= I18n.config.locale
+      I18n.enforce_available_locales!(locale)
+      CONVERTIONS.reduce(string) do |s, (type, replacements)|
+        map = I18n.t(type, scope: "date", locale: locale).zip(replacements).to_h.tap { |h| h.delete(nil) }
+        s.gsub(/\b(#{map.keys.join("|")})\b/) { |match| map[match] }
+      end
+  end
+
+  CONVERTIONS = {
+      month_names: ::Date::MONTHNAMES,
+      abbr_month_names: ::Date::ABBR_MONTHNAMES,
+      day_names: ::Date::DAYNAMES,
+      abbr_day_names: ::Date::ABBR_DAYNAMES
+    }
 end
 
 ActiveSupport::TimeZone.send :include, TimeZoneExt
