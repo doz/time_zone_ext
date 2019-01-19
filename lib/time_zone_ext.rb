@@ -5,7 +5,8 @@ require "date"
 require "i18n"
 
 module TimeZoneExt
-  def strptime(date, format, locale: I18n.config.locale)
+  def strptime(date, format, locale: I18n.locale)
+    locale ||= I18n.config.locale
     if format =~ /%z/i
       DateTime.strptime(unlocalize_date_string(date,locale), format).in_time_zone
     else
