@@ -26,8 +26,13 @@ module TimeZoneExt
       locale ||= I18n.config.locale
       I18n.enforce_available_locales!(locale)
       CONVERTIONS.reduce(string) do |s, (type, replacements)|
-        map = I18n.t(type, scope: "date", locale: locale).zip(replacements).to_h.tap { |h| h.delete(nil) }
-        s.gsub(/\b(#{map.keys.join("|")})\b/) { |match| map[match] }
+        tmp_array = Array.new
+        date_map = {}
+        map = I18n.t(type, scope: "date", locale: locale)
+        map.each { |r| tmp_array.push(r.to_s.gsub('.','')) }
+        map = tmp_array.zip(replacements).to_h.tap { |h| h.delete("") }
+        map.collect{|k , v| s.include?(k) ? date_map.merge!({s.split(' ', 2).first => v}) :  date_map.merge!({k =>  v})}
+        s.gsub(/\b(#{date_map.keys.join("|") })\b/) {|match| date_map[match] }
       end
   end
 
